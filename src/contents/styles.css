@@ -157,6 +157,14 @@
   user-select: none;
 }
 
+/* Draggable header */
+.ts-popover-header {
+  cursor: grab;
+}
+.ts-popover-header:active {
+  cursor: grabbing;
+}
+
 .ts-popover-close {
   display: flex;
   align-items: center;
@@ -169,7 +177,9 @@
   cursor: pointer;
   border-radius: 6px;
   padding: 0;
-  transition: color 0.15s, background 0.15s;
+  transition:
+    color 0.15s,
+    background 0.15s;
 }
 
 .ts-popover-close:hover {
@@ -223,10 +233,12 @@
   border-radius: 7px;
   background: var(--ts-btn-bg);
   color: var(--ts-btn-text);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition:
+    background 0.15s,
+    transform 0.1s;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 

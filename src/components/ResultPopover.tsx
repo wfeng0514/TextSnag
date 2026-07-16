@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react"
+import Draggable from "react-draggable"
 import type { SelectionRect } from "../lib/extractor"
 import { tsn } from "../lib/tsn"
 
@@ -99,48 +100,53 @@ export default function ResultPopover({
   if (!text) return null
 
   return (
-    <div
-      ref={popoverRef}
-      id="textsnag-popover"
-      className={tsn("ts-popover")}
-      style={{ left: position.left, top: position.top }}>
-      <div className={tsn("ts-popover-header")}>
-        <span className={tsn("ts-popover-title")}>提取的文字</span>
-        <button
-          className={tsn("ts-popover-close")}
-          onClick={onClose}
-          aria-label="关闭">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M1 1l12 12M13 1L1 13"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-      </div>
+    <Draggable
+      nodeRef={popoverRef}
+      handle=".ts-popover-header"
+      defaultPosition={{ x: 0, y: 0 }}>
+      <div
+        ref={popoverRef}
+        id="textsnag-popover"
+        className={tsn("ts-popover")}
+        style={{ left: position.left, top: position.top }}>
+        <div className={tsn("ts-popover-header")}>
+          <span className={tsn("ts-popover-title")}>提取的文字</span>
+          <button
+            className={tsn("ts-popover-close")}
+            onClick={onClose}
+            aria-label="关闭">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path
+                d="M1 1l12 12M13 1L1 13"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
+        </div>
 
-      <textarea
-        className={tsn("ts-popover-text")}
-        value={text}
-        readOnly
-        onClick={(e) => (e.target as HTMLTextAreaElement).select()}
-      />
+        <textarea
+          className={tsn("ts-popover-text")}
+          value={text}
+          readOnly
+          onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+        />
 
-      <div className={tsn("ts-popover-footer")}>
-        <span className={tsn("ts-popover-charcount")}>
-          {text.length} 字符
-        </span>
-        <button
-          className={tsn(
-            "ts-popover-copy",
-            copied && "ts-popover-copy--copied",
-          )}
-          onClick={handleCopy}>
-          {copied ? "已复制 ✓" : "复制"}
-        </button>
+        <div className={tsn("ts-popover-footer")}>
+          <span className={tsn("ts-popover-charcount")}>
+            {text.length} 字符
+          </span>
+          <button
+            className={tsn(
+              "ts-popover-copy",
+              copied && "ts-popover-copy--copied",
+            )}
+            onClick={handleCopy}>
+            {copied ? "已复制 ✓" : "复制"}
+          </button>
+        </div>
       </div>
-    </div>
+    </Draggable>
   )
 }
