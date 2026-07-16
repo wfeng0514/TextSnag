@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TextSnag 测试页面</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; color: #1e293b; line-height: 1.8; }
+  h1 { color: #2563eb; }
+  h2 { color: #334155; margin-top: 32px; }
+  p { margin: 16px 0; }
+  ul { padding-left: 24px; }
+  li { margin: 8px 0; }
+  pre { background: #f1f5f9; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  code { background: #e2e8f0; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+  th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: left; }
+  th { background: #f8fafc; font-weight: 600; }
+  img { max-width: 300px; margin: 16px 0; }
+  .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 24px 0; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #0f172a; color: #e2e8f0; }
+    h2 { color: #e2e8f0; }
+    pre { background: #1e293b; }
+    code { background: #334155; }
+    th { background: #1e293b; }
+    th, td { border-color: #334155; }
+    .card { background: #1e293b; border-color: #334155; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🧩 TextSnag 测试页面</h1>
+<p>点击浏览器工具栏的 <strong>TextSnag 图标</strong>，然后拖拽选择页面上的任意区域来提取文字。</p>
+
+<div class="card">
+  <h2>📝 段落文字</h2>
+  <p>TextSnag 是一个轻量级的浏览器扩展，让你能够<strong>快速提取</strong>网页上任意区域的文字内容。只需点击图标、拖拽选区、复制文字，三步完成。支持智能格式化——段落保留换行、列表自动加项目符号、代码块保留格式。</p>
+  <p>这对于需要从网页上摘录信息的场景特别有用，比如收集研究资料、保存设计规范、摘录文档片段等等。不再需要手动选中、复制、粘贴——TextSnag 让这一切变得<em>丝滑流畅</em>。</p>
+</div>
+
+<div class="card">
+  <h2>📋 列表内容</h2>
+  <ul>
+    <li>Chrome 扩展开发最佳实践</li>
+    <li>支持 Manifest V3 规范</li>
+    <li>使用 Plasmo 框架构建</li>
+    <li>React + TypeScript 技术栈</li>
+    <li>支持深色模式自适应</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>💻 代码块</h2>
+  <pre><code>function greet(name: string): string {
+  return `Hello, ${name}! Welcome to TextSnag.`;
+}
+
+const message = greet("开发者");
+console.log(message);</code></pre>
+</div>
+
+<div class="card">
+  <h2>📊 表格数据</h2>
+  <table>
+    <thead>
+      <tr><th>功能</th><th>状态</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>框选截图</td><td>✅</td><td>拖拽选择任意区域</td></tr>
+      <tr><td>文字提取</td><td>✅</td><td>智能格式化 DOM 文字</td></tr>
+      <tr><td>一键复制</td><td>✅</td><td>浮窗展示 + 复制按钮</td></tr>
+      <tr><td>深色模式</td><td>✅</td><td>自动适应系统主题</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card">
+  <h2>🖼️ 图片 Alt 文字</h2>
+  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='80'%3E%3Crect fill='%232563eb' width='200' height='80' rx='10'/%3E%3Ctext fill='white' font-family='sans-serif' font-size='14' x='50%25' y='50%25' text-anchor='middle' dy='.3em'%3ETextSnag%3C/text%3E%3C/svg%3E" alt="TextSnag Logo — 蓝色圆角矩形上的白色文字">
+  <p style="color: #64748b; font-size: 14px;">↑ 选中这张图片时，TextSnag 会提取其 alt 属性文字。</p>
+</div>
+
+<div class="card">
+  <h2>🔗 链接</h2>
+  <p>了解更多关于浏览器扩展开发：<a href="https://docs.plasmo.com">Plasmo 框架文档</a> | <a href="https://developer.chrome.com/docs/extensions">Chrome Extensions 官方文档</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+/* ============================================
+   TextSnag — Content Script Styles
+   All classes prefixed with "ts-" to avoid
+   collisions with page CSS.
+   ============================================ */
+
+/* ---- CSS Variables (Light Mode Default) ---- */
+:root {
+  --ts-mask-bg: rgba(0, 0, 0, 0.4);
+  --ts-selection-border: #2563eb;
+  --ts-selection-bg: rgba(37, 99, 235, 0.08);
+  --ts-popover-bg: #ffffff;
+  --ts-popover-border: #e2e8f0;
+  --ts-popover-shadow: 0 10px 40px rgba(0, 0, 0, 0.18), 0 2px 10px rgba(0, 0, 0, 0.1);
+  --ts-popover-text-color: #1e293b;
+  --ts-popover-text-bg: #f8fafc;
+  --ts-popover-text-border: #e2e8f0;
+  --ts-popover-muted: #64748b;
+  --ts-btn-bg: #2563eb;
+  --ts-btn-hover: #1d4ed8;
+  --ts-btn-text: #ffffff;
+  --ts-btn-copied-bg: #16a34a;
+  --ts-close-color: #64748b;
+  --ts-close-hover: #334155;
+  --ts-hint-color: rgba(255, 255, 255, 0.9);
+  --ts-hint-esc-color: rgba(255, 255, 255, 0.5);
+  --ts-selection-size-bg: rgba(37, 99, 235, 0.9);
+  --ts-selection-size-color: #ffffff;
+}
+
+/* ---- Dark Mode ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ts-mask-bg: rgba(0, 0, 0, 0.55);
+    --ts-selection-border: #3b82f6;
+    --ts-selection-bg: rgba(59, 130, 246, 0.1);
+    --ts-popover-bg: #1e293b;
+    --ts-popover-border: #334155;
+    --ts-popover-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 2px 10px rgba(0, 0, 0, 0.3);
+    --ts-popover-text-color: #e2e8f0;
+    --ts-popover-text-bg: #0f172a;
+    --ts-popover-text-border: #334155;
+    --ts-popover-muted: #94a3b8;
+    --ts-btn-bg: #3b82f6;
+    --ts-btn-hover: #2563eb;
+    --ts-btn-text: #ffffff;
+    --ts-btn-copied-bg: #22c55e;
+    --ts-close-color: #94a3b8;
+    --ts-close-hover: #e2e8f0;
+    --ts-hint-color: rgba(255, 255, 255, 0.9);
+    --ts-hint-esc-color: rgba(255, 255, 255, 0.5);
+    --ts-selection-size-bg: rgba(59, 130, 246, 0.9);
+    --ts-selection-size-color: #ffffff;
+  }
+}
+
+/* ---- Overlay ---- */
+.ts-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483646 !important;
+  cursor: crosshair !important;
+  user-select: none !important;
+  -webkit-user-select: none !important;
+}
+
+/* ---- Hint Text ---- */
+.ts-overlay-hint {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--ts-hint-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.ts-overlay-hint-esc {
+  display: block;
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--ts-hint-esc-color);
+  font-weight: 400;
+}
+
+/* ---- Mask pieces ---- */
+.ts-mask {
+  position: fixed;
+  background: var(--ts-mask-bg);
+  pointer-events: none;
+}
+
+/* ---- Selection Rectangle ---- */
+.ts-selection {
+  position: fixed;
+  border: 2px dashed var(--ts-selection-border);
+  background: var(--ts-selection-bg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ts-selection-size {
+  position: absolute;
+  bottom: -28px;
+  right: 0;
+  background: var(--ts-selection-size-bg);
+  color: var(--ts-selection-size-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ---- Popover ---- */
+.ts-popover {
+  position: fixed !important;
+  z-index: 2147483647 !important;
+  width: 360px;
+  max-height: 420px;
+  background: var(--ts-popover-bg);
+  border: 1px solid var(--ts-popover-border);
+  border-radius: 12px;
+  box-shadow: var(--ts-popover-shadow);
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+
+/* ---- Popover Header ---- */
+.ts-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ts-popover-border);
+  flex-shrink: 0;
+}
+
+.ts-popover-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ts-popover-text-color);
+  user-select: none;
+}
+
+.ts-popover-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: none;
+  color: var(--ts-close-color);
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 0;
+  transition: color 0.15s, background 0.15s;
+}
+
+.ts-popover-close:hover {
+  color: var(--ts-close-hover);
+  background: var(--ts-popover-text-bg);
+}
+
+/* ---- Popover Text Area ---- */
+.ts-popover-text {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: var(--ts-popover-text-bg);
+  color: var(--ts-popover-text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  min-height: 120px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  tab-size: 2;
+}
+
+.ts-popover-text::selection {
+  background: rgba(37, 99, 235, 0.25);
+}
+
+/* ---- Popover Footer ---- */
+.ts-popover-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-top: 1px solid var(--ts-popover-border);
+  flex-shrink: 0;
+}
+
+.ts-popover-charcount {
+  font-size: 12px;
+  color: var(--ts-popover-muted);
+  user-select: none;
+}
+
+/* ---- Copy Button ---- */
+.ts-popover-copy {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 7px;
+  background: var(--ts-btn-bg);
+  color: var(--ts-btn-text);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.ts-popover-copy:hover {
+  background: var(--ts-btn-hover);
+}
+
+.ts-popover-copy:active {
+  transform: scale(0.97);
+}
+
+.ts-popover-copy--copied {
+  background: var(--ts-btn-copied-bg) !important;
+  cursor: default;
+}
