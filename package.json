@@ -2,7 +2,7 @@
   "name": "textsnag",
   "displayName": "TextSnag",
   "version": "1.0.0",
-  "description": "Click, select, copy — extract text from any webpage region with a simple drag.",
+  "description": "拖拽框选，轻松提取任何网页上的文字——即使页面禁止复制也能搞定。",
   "author": "",
   "license": "MIT",
   "scripts": {
