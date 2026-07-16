@@ -117,6 +117,15 @@ function extractElement(
 
   const tag = el.tagName
 
+  // Skip our own extension UI elements
+  if (
+    el.id === "textsnag-app" ||
+    el.closest("#textsnag-overlay") ||
+    el.closest("#textsnag-popover")
+  ) {
+    return ""
+  }
+
   // Skip script/style/noscript content
   if (["SCRIPT", "STYLE", "NOSCRIPT", "TEMPLATE"].includes(tag)) {
     return ""
@@ -191,10 +200,10 @@ function extractElement(
  * their text with smart formatting.
  */
 export function extractText(rect: SelectionRect): string {
-  const body = document.body
-  if (!body) return ""
+  const root = document.documentElement
+  if (!root) return ""
 
-  // Strategy: walk the body's descendants, find all block-level
+  // Strategy: walk the document tree from <html>, find all block-level
   // elements that intersect the rect, extract each one.
   const blocks: string[] = []
 
@@ -250,7 +259,7 @@ export function extractText(rect: SelectionRect): string {
     }
   }
 
-  walk(body)
+  walk(root)
 
   // Clean up the result
   let result = blocks.join("").trim()

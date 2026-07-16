@@ -91,6 +91,7 @@ export default function TextSnagApp() {
 
   const handleSelectionComplete = useCallback((rect: SelectionRect) => {
     const text = extractText(rect);
+    console.log('TextSnag: extraction complete', { rect, textLength: text.length, textPreview: text.slice(0, 100) });
     setResult({ text, rect });
     setPhase('result');
   }, []);
