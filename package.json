@@ -10,6 +10,8 @@
     "dev:firefox": "plasmo dev --target=firefox-mv2",
     "build": "plasmo build",
     "build:firefox": "plasmo build --target=firefox-mv2",
+    "obfuscate": "node scripts/obfuscate.mjs",
+    "build:release": "plasmo build && node scripts/obfuscate.mjs",
     "package": "plasmo package",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix"
@@ -22,19 +24,21 @@
     "@types/chrome": "^0.0.270",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "javascript-obfuscator": "^5.4.7",
     "plasmo": "0.90.5",
     "prettier": "^3.3.3",
     "typescript": "^5.5.4"
   },
   "manifest": {
+    "name": "TextSnag - 网页文字提取器",
+    "description": "拖拽框选，轻松提取任何网页上的文字——即使页面禁止复制也能搞定。",
     "host_permissions": [
       "<all_urls>"
     ],
     "permissions": [
       "activeTab",
       "scripting",
-      "clipboardWrite",
-      "storage"
+      "clipboardWrite"
     ]
   }
 }
